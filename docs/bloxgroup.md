@@ -25,12 +25,8 @@ Returns a list of `BloxMember` objects, all the members of the Group.
 ## Attributes
 
 ##### `BloxUser.join_requests`
-*This currently doesn't work*
-
-Calls `__join_requests` internally and returns the result.
 
 ---
 ##### `BloxUser.settings`
-Calls `__get_setings` internally and returns a BloxSettings object with the guild's settings.
 
 ---

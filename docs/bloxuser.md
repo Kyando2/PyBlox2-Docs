@@ -42,7 +42,7 @@ Unblocks the user.
 ## Attributes
 
 ##### `BloxUser.friends`
-Calls `__get_friends` internally and returns the result.
+List of the user's friends.
 
 ---
 
