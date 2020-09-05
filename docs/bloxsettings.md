@@ -1,10 +1,10 @@
 # `BloxSettings`
-##### *PyBlox2.Settings.BloxSettings*
+##### *PyBlox2.BloxSettings*
 
 ## Construction
-*THIS CLASS SHOULD __NEVER__ BE CONSTRUCTED*
+*This class should absolutely never be constructed manually*
 
-instead obtain it via the `BloxGroup.settings` attribute.
+instead obtain it via the `BloxGroup.settings` fetchable.
 
 ## Attributes
 

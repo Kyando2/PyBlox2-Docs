@@ -2,31 +2,39 @@
 ##### *PyBlox2.Groups.BloxGroup*
 
 ## Construction
-*THIS CLASS SHOULD __NEVER__ BE CONSTRUCTED*
+*Although it is possible to construct it, there is no reason to do so manually*
 
 instead obtain it via `BloxClient.get_group()`
 ## Methods
 
-##### `BloxGroup.get_role(role_set_name)`
-Returns a `BloxRank` object with the selected role_set_name.
+##### `async BloxGroup.get_role(role_set_name)`
+Returns a [`BloxRank`](bloxranks.md) object with the selected role_set_name.
 
 ---
-##### `BloxGroup.get_role(username)`
-Returns a `BloxMember` object with the selected username.
+##### `async BloxGroup.get_role(username)`
+Returns a [`BloxMember`](bloxmember.md) object with the selected username.
 
 ---
-##### `BloxGroup.members()`
-*This is will be deprecated in the next update*
+##### `async BloxGroup.fetch()`
+Fetches an attribute, attribute must be: `["join_requests", "members", "settings"]`
 
----
-Returns a list of `BloxMember` objects, all the members of the Group.
+## Fetchables
+BloxGroup has the following fetchable attributes: `["join_requests", "members", "settings"]`
 
----
-## Attributes
+## Example
 
-##### `BloxUser.join_requests`
+```
+import PyBlox2
+ROBLOSECURITY = "YOUR_ROBLOSECURITY"
 
----
-##### `BloxUser.settings`
 
----
+client = PyBlox2.BloxClient(verbose=True)
+
+@client.event
+async def ready(ctx):
+    group = await client.get_group(5029105)
+    await group.fetch("members")
+    print(group.members[0])
+
+client.connect(ROBLOSECURITY)
+```

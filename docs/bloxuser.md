@@ -1,66 +1,66 @@
 # `BloxUser`
-##### *PyBlox2.General.BloxUser*
+##### *PyBlox2.BloxUser*
 
 ## Construction
-*THIS CLASS SHOULD __NEVER__ BE CONSTRUCTED*
+*Although it is possible to construct it, there is no reason to do so manually*
 
-instead obtain it via `BloxClient.get_user()`
+Obtain it via `BloxClient.get_user()`
 ## Methods
 
-##### `BloxUser.accept_friend_request()`
+##### `async BloxUser.accept_friend_request()`
 Accept the user's friend request if there is one.
 
 ---
-##### `BloxUser.decline_friend_request()`
+##### `async BloxUser.decline_friend_request()`
 Decline the user's friend request if there is one.
 
 ---
-##### `BloxUser.request_friendship()`
+##### `async BloxUser.request_friendship()`
 Sends the user a friend request.
 
 ---
-##### `BloxUser.unfriend()`
+##### `async BloxUser.unfriend()`
 Unfriends the user.
 
 ---
-##### `BloxUser.follow()`
+##### `async BloxUser.follow()`
 Follows the user.
 
 ---
-##### `BloxUser.unfollow()`
+##### `async BloxUser.unfollow()`
 Unfollows the user.
 
 ---
-##### `BloxUser.block()`
+##### `async BloxUser.block()`
 Blocks the user.
 
 ---
-##### `BloxUser.unblock()`
+##### `async BloxUser.unblock()`
 Unblocks the user.
 
 ---
+##### `async BloxUser.fetch()`
+Fetches an attribute, attribute must be: `["friends"]`
+
 ## Attributes
-
-##### `BloxUser.friends`
-List of the user's friends.
-
----
+BloxUser has the following fetchable attributes: `["friends"]`
 
 ## Example
 
 ```
-import PyBlox2.RobloxWebClient.BloxClient
+import PyBlox2
 ROBLOSECURITY = "YOUR_ROBLOSECURITY"
 
 
-client = BloxClient(verbose=True)
+client = PyBlox2.BloxClient(verbose=True)
 
-
-def main():
+@client.event
+async def ready(ctx):
 	user = client.get_user("Roblox")
+	await user.fetch("friends")
 	print(user.friends)
 
 
-client.connect(ROBLOSECURITY, main)
+client.connect(ROBLOSECURITY)
 ```
 

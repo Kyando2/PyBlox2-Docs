@@ -1,18 +1,18 @@
-## PyBlox2 documentation 
+## PyBlox2 v1.0.0-b0 documentation 
 
-You can check PyBlox2 [github](https://github.com/Kyando2/PyBlox).
+You can check out PyBlox2 on [github](https://github.com/Kyando2/PyBlox/tree/async).
 
 ## Blox
 Here are all the BloxTypes:
 
-[`PyBlox2.RobloxWebClient.BloxClient`](bloxclient.md)
+[`PyBlox2.BloxClient`](bloxclient.md)
 
-[`PyBlox2.General.BloxUser`](bloxuser.md)
+[`PyBlox2.BloxUser`](bloxuser.md)
 
-[`PyBlox2.Groups.BloxGroup`](bloxgroup.md)
+[`PyBlox2.BloxGroup`](bloxgroup.md)
 
-[`PyBlox2.Member.BloxMember`](bloxmember.md)
+[`PyBlox2.BloxMember`](bloxmember.md)
 
-[`PyBlox2.Ranks.BloxRank`](bloxranks.md)
+[`PyBlox2.BloxRank`](bloxranks.md)
 
-[`PyBlox2.Settings.BloxSettings`](bloxsettings.md)
+[`PyBlox2.BloxSettings`](bloxsettings.md)

@@ -55,21 +55,35 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">BloxClient</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#pyblox2robloxwebclientbloxclient">PyBlox2.RobloxWebClient.BloxClient</a>
+    <li class="toctree-l2"><a class="reference internal" href="#pyblox2bloxclient">PyBlox2.BloxClient</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#construction">Construction</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#bloxclientconnectroblosecurity-callback">BloxClient.connect(ROBLOSECURITY, callback)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#bloxclientconnectroblosecurity">BloxClient.connect(ROBLOSECURITY)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#bloxclientget_userusername">BloxClient.get_user(username)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#async-bloxclientget_userusername">async BloxClient.get_user(username)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#bloxclientget_groupid">BloxClient.get_group(id)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#async-bloxclientget_groupid">async BloxClient.get_group(id)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#bloxclientfriend_requests">BloxClient.friend_requests()</a>
+    <li class="toctree-l3"><a class="reference internal" href="#async-bloxclientfetch">async BloxClient.fetch()</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#decorator">Decorator</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bloxclientevent">BloxClient.event</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ready">"ready"</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#request">"request"</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fetchables">Fetchables</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
     </li>
@@ -123,41 +137,51 @@
             <div class="section">
               
                 <h1 id="bloxclient"><code>BloxClient</code></h1>
-<h5 id="pyblox2robloxwebclientbloxclient"><em>PyBlox2.RobloxWebClient.BloxClient</em></h5>
+<h5 id="pyblox2bloxclient"><em>PyBlox2.BloxClient</em></h5>
 <h2 id="construction">Construction</h2>
 <p>There are no required arguments to constructing a BloxClient.</p>
 <p>You can pass <code>verbose=True</code> to print additional information on the requests.</p>
 <h2 id="methods">Methods</h2>
-<p>Methods not listed below should never be used</p>
-<h5 id="bloxclientconnectroblosecurity-callback"><code>BloxClient.connect(ROBLOSECURITY, callback)</code></h5>
-<p>Where callback is your main function and ROBLOSECURITY is your bot's ROBLOSECURITY cookie. Puts the BloxClient in a connected state.</p>
+<p>Methods not listed below are considered <code>private</code></p>
+<h5 id="bloxclientconnectroblosecurity"><code>BloxClient.connect(ROBLOSECURITY)</code></h5>
+<p>ROBLOSECURITY must be your bot account's ROBLOSECURITY cookie. Puts the BloxClient in a connected state.</p>
 <hr />
-<h5 id="bloxclientget_userusername"><code>BloxClient.get_user(username)</code></h5>
+<h5 id="async-bloxclientget_userusername"><code>async BloxClient.get_user(username)</code></h5>
 <p>Where username is the name of the user. returns a BloxUser object.</p>
 <p><em>requires BloxClient to be in a connected state</em></p>
 <hr />
-<h5 id="bloxclientget_groupid"><code>BloxClient.get_group(id)</code></h5>
+<h5 id="async-bloxclientget_groupid"><code>async BloxClient.get_group(id)</code></h5>
 <p>Where id is the group's id. returns a BloxGroup object.</p>
 <p><em>requires BloxClient to be in a connected state</em></p>
 <hr />
-<h5 id="bloxclientfriend_requests"><code>BloxClient.friend_requests()</code></h5>
-<p>Returns all the friend requests to the bot user.</p>
+<h5 id="async-bloxclientfetch"><code>async BloxClient.fetch()</code></h5>
+<p>Fetches an attribute, attribute must be: <code>["friend_requests"]</code></p>
 <p><em>requires BloxClient to be in a connected state</em></p>
 <hr />
+<h2 id="decorator">Decorator</h2>
+<h3 id="bloxclientevent"><code>BloxClient.event</code></h3>
+<p>Adds a coroutine as a listener for a callback event</p>
+<p>Possible callback events: ["ready", "request"] (<strong>Those must be the name of the functions</strong>)</p>
+<h4 id="ready"><code>"ready"</code></h4>
+<p>Called when the BloxClient.connect function has finished connecting</p>
+<h4 id="request"><code>"request"</code></h4>
+<p>Called each time a request is made to the Roblox API</p>
+<h2 id="fetchables">Fetchables</h2>
+<p>BloxClient has the following fetchable attributes: <code>["friend_requests"]</code></p>
 <h2 id="example">Example</h2>
-<pre><code>import PyBlox2.RobloxWebClient.BloxClient
+<pre><code>import PyBlox2
 ROBLOSECURITY = &quot;YOUR_ROBLOSECURITY&quot;
 
 
-client = BloxClient(verbose=True)
+client = PyBlox2.BloxClient(verbose=True)
 
-
-def main():
+@client.event
+async def ready(ctx):
     # do stuff
     pass
 
 
-client.connect(ROBLOSECURITY, main)
+client.connect(ROBLOSECURITY)
 </code></pre>
               
             </div>

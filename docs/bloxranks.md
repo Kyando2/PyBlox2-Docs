@@ -1,8 +1,8 @@
 # `BloxRank`
-##### *PyBlox2.Ranks.BloxRank*
+##### *PyBlox2.BloxRank*
 
 ## Construction
-*THIS CLASS SHOULD __NEVER__ BE CONSTRUCTED*
+*Although it is possible to construct it, there is no reason to do so manually*
 
 instead obtain it via `BloxGroup.get_role()`.
 
